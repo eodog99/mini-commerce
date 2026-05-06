@@ -123,3 +123,21 @@ input {
   border: 1px solid #ddd;
   border-radius: 6px;
 }
+
+.menu {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.menu button {
+  padding: 8px 12px;
+  border: 1px solid #ddd;
+  background: white;
+  cursor: pointer;
+}
+
+.menu button.active {
+  background: black;
+  color: white;
+}

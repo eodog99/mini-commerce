@@ -1,5 +1,5 @@
+import { useCartStore } from '../features/cart/store'
 import { Link } from 'react-router-dom'
-import { useCartStore } from '../store/cartStore'
 
 function Header() {
   const cartItems = useCartStore((state) => state.cartItems)

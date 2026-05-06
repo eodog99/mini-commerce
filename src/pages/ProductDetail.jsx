@@ -1,8 +1,8 @@
-import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
-import { getProductById } from '../api/product'
-import { useCartStore } from '../store/cartStore'
+import { useEffect, useState } from 'react'
 
+import { getProductById } from '../features/product/api'
+import { useCartStore } from '../features/cart/store'
 function ProductDetail() {
   const { id } = useParams()
   const [product, setProduct] = useState(null)
@@ -10,7 +10,7 @@ const addToCart = useCartStore((state) => state.addToCart)
 
 
   useEffect(() => {
-    getProductById(id).then(setProduct)
+    getProducts(id).then(setProduct)
   }, [id])
 
   if (!product) return <div>로딩중...</div>

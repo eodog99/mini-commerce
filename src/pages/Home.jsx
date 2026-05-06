@@ -1,11 +1,17 @@
 import { useEffect, useState } from 'react'
-import { getProducts } from '../api/product'
-import ProductCard from '../components/ProductCard'
+
+import { getProducts } from '../features/product/api'
+
+import ProductCard from '../features/product/components/ProductCard'
+import CategoryMenu from '../features/product/components/CategoryMenu'
+
+
 
 function Home() {
   const [products, setProducts] = useState([])
   const [search, setSearch] = useState('')
   const [debouncedSearch, setDebouncedSearch] = useState('')
+  const [category, setCategory] = useState('all')
 
   // API 호출
   useEffect(() => {
@@ -22,14 +28,18 @@ function Home() {
   }, [search])
 
   // 필터링
-  const filteredProducts = products.filter((item) =>
+const filteredProducts = products
+  .filter((item) =>
     item.title.toLowerCase().includes(debouncedSearch.toLowerCase())
+  )
+  .filter((item) =>
+    category === 'all' ? true : item.category === category
   )
 
   return (
     <div className="container">
       <h1>상품 리스트</h1>
-
+<CategoryMenu selected={category} onSelect={setCategory} />
       {/* 🔍 검색창 */}
       <input
         type="text"
